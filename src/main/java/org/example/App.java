@@ -29,7 +29,6 @@ public class App  {
                 System.out.println("Bad parameters!");
                 continue;
             }
-
             playGame(xPlayer, oPlayer);
         }
     }
