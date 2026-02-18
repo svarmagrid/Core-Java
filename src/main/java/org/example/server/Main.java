@@ -15,7 +15,7 @@ import java.util.concurrent.locks.*;
 public class Main {
 
     private static final int PORT = 23456;
-    private static final String DB_PATH = "server/data/db.json";
+    private static final String DB_PATH = "src/main/java/org/example/server/data/db.json";
 
     private static final ExecutorService executor = Executors.newCachedThreadPool();
     private static final ReadWriteLock lock = new ReentrantReadWriteLock();
