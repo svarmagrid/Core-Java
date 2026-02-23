@@ -98,4 +98,48 @@ public class CrazyLambdas {
     public static Supplier<Supplier<Supplier<String>>> trickyWellDoneSupplier() {
         return () -> () -> () -> "WELL DONE!";
     }
+
+    public static void main(String[] args) {
+        System.out.println(helloSupplier().get());
+        System.out.println(isEmptyPredicate().test(""));
+        System.out.println(stringMultiplier().apply("Hi",3));
+        System.out.println(toDollarStringFunction().apply(new BigDecimal("123.45")));
+        System.out.println(lengthInRangePredicate(3,6).test("Hello"));
+        System.out.println(randomIntSupplier().getAsInt());
+        System.out.println(boundedRandomIntSupplier().applyAsInt(100));
+        System.out.println(intSquareOperation().applyAsInt(2));
+        System.out.println(longSumOperation().applyAsLong(2,3));
+        System.out.println(stringToIntConverter().applyAsInt("12"));
+        System.out.println(nMultiplyFunctionSupplier(5).get().applyAsInt(3));
+        Function<String, String> shout=s->s.toUpperCase();
+        Function<String, String> composed=composeWithTrimFunction().apply(shout);
+        System.out.println(composed.apply("  hello  "));
+        runningThreadSupplier(()-> System.out.println("Running in a new thread")).get();
+        newThreadRunnableConsumer().accept(()-> System.out.println("Another thread"));
+        runnableToThreadSupplierFunction().apply(()-> System.out.println("Third thread")).get();
+        IntUnaryOperator doubler = x -> x * 2;
+        IntPredicate isEven = x -> x % 2 == 0;
+
+        IntUnaryOperator conditional =
+                functionToConditionalFunction().apply(doubler, isEven);
+        System.out.println(conditional.applyAsInt(4));
+        System.out.println(conditional.applyAsInt(5));
+
+        Map<String,IntUnaryOperator> operations=Map.of("square",x->x*x, "double",x->x*2);
+        IntUnaryOperator op=functionLoader().apply(operations,"square");
+        IntUnaryOperator op1=functionLoader().apply(operations,"double");
+        System.out.println(op.applyAsInt(6));
+        System.out.println(op1.applyAsInt(3));
+
+        Comparator<String> byLength =
+                comparing(String::length);
+        Comparator<String> byLengthThenAlphabet =
+                thenComparing(byLength, s -> s);
+
+        System.out.println(byLengthThenAlphabet.compare("cat", "cat"));
+        System.out.println(byLengthThenAlphabet.compare("cat", "apple"));
+        System.out.println(
+                trickyWellDoneSupplier().get().get().get()
+        );
+    }
 }

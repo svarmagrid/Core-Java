@@ -17,6 +17,18 @@ public class FunctionMap<T, R> {
 
     public Function<T, R> getFunction(String name) {
             return functionMap.get(name);
+    }
 
+    public static void main(String[] args) {
+
+        FunctionMap<Integer, Integer> map = Functions.intFunctionMap();
+
+        Function<Integer, Integer> abs = map.getFunction("abs");
+        Function<Integer, Integer> square = map.getFunction("square");
+        Function<Integer, Integer> increment = map.getFunction("increment");
+
+        System.out.println("abs(-5) = " + abs.apply(-5));
+        System.out.println("square(4) = " + square.apply(4));
+        System.out.println("increment(10) = " + increment.apply(10));
     }
 }

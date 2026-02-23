@@ -15,4 +15,5 @@ public class Functions {
 
         return intFunctionMap;
     }
+
 }
