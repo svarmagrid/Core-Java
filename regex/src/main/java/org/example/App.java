@@ -143,5 +143,19 @@ public class App {
         System.out.println("\nConverting markdown links:");
         String link = "[Bobocode](https://www.bobocode.com)";
         System.out.println(regex.insertLinksAndResourcesIntoHref(link));
+
+        System.out.print("Last word:");
+        String word="what is the last word";
+        matcher=regex.findLastWord().matcher(word);
+        while (matcher.find()){
+            System.out.println(matcher.group());
+        }
+
+        System.out.println("Finding all emails");
+        String email="satish@gmail.com is an email id of satish";
+        matcher=regex.findAllEmails().matcher(email);
+        while (matcher.find()){
+            System.out.println(matcher.group());
+        }
     }
 }

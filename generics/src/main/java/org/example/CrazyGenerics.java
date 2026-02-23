@@ -180,7 +180,6 @@ public class CrazyGenerics {
         }
     }
 
-    /* ===================== MAIN ===================== */
 
     public static void main(String[] args) {
 
